@@ -1,6 +1,6 @@
 package com.xinyi.timing_schedule_datax.service;
 
-import com.xinyi.timing_schedule_datax.constant.Contant;
+import com.xinyi.timing_schedule_datax.constant.Constant;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,7 +23,7 @@ public class TimingSchedule {
                 executeDatax();
             }
 
-        }, Contant.initDelay, Contant.oneDay, TimeUnit.MILLISECONDS);
+        }, Constant.initDelay, Constant.oneDay, TimeUnit.MILLISECONDS);
 
     }
     //批量执行datax
@@ -31,9 +31,9 @@ public class TimingSchedule {
         int jobId = 1 ;
         try {
             System.out.println("------------------startJob----------------------");
-            String[] str = getFileName(Contant.jsonPath);
+            String[] str = getFileName(Constant.jsonPath);
             for (String name : str) {  //解决阻塞问题 "python -loglevel quiet "+Contant.dataxPath+" "+Contant.jsonPath+"/"+name+" --jobid="+jobId
-                String executeCmd = "python "+Contant.dataxPath+" "+Contant.jsonPath+"/"+name+" --jobid="+jobId;
+                String executeCmd = "python "+ Constant.dataxPath+" "+ Constant.jsonPath+"/"+name+" --jobid="+jobId;
                 System.out.println(executeCmd);
                 Process pr = Runtime.getRuntime().exec(executeCmd);
                 BufferedReader in = new BufferedReader(new InputStreamReader(pr.getInputStream()));

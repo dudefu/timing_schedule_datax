@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinyi.timing_schedule_datax.dao.TaskDescriptionDao">
+
+    <resultMap id="TaskDescriptionResult" type="com.xinyi.timing_schedule_datax.entity.TaskDescription">
+        <id property="taskId" column="taskId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result property="sourceId" column="sourceId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="t_mode" column="t_mode" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="incrementColumn" column="incrementColumn" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="tableName" column="tableName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="t_columns" column="t_columns" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="targetTableName" column="targetTableName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dispatch" column="dispatch" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="remarks" column="remarks" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+    <delete id="deleteById">
+            delete from TAB_DATA_MIGRATE_TASKDESCTION where taskId=#{taskId}
+        </delete>
+
+    <select id="selectAll" resultMap="TaskDescriptionResult">
+            select * from TAB_DATA_MIGRATE_TASKDESCTION
+        </select>
+
+
+    <insert id="save" parameterType="com.xinyi.timing_schedule_datax.entity.TaskDescription">
+        insert into TAB_DATA_MIGRATE_TASKDESCTION(taskId,sourceId,t_mode,incrementColumn,
+        tableName,t_columns,targetTableName,dispatch,remarks) values(#{taskId},
+        #{sourceId},#{t_mode},#{incrementColumn},#{tableName},#{t_columns},
+          #{targetTableName},#{dispatch},#{remarks})
+    </insert>
+
+
+    <update id="update" parameterType="com.xinyi.timing_schedule_datax.entity.TaskDescription">
+        update TAB_DATA_MIGRATE_TASKDESCTION
+        <set>
+            <if test="sourceId != null">
+                sourceId = #{sourceId,jdbcType=VARCHAR},
+            </if>
+            <if test="t_mode != null">
+                t_mode = #{t_mode,jdbcType=VARCHAR},
+            </if>
+            incrementColumn = #{incrementColumn,jdbcType=VARCHAR},
+            <if test="tableName != null">
+                tableName = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="t_columns != null">
+                t_columns = #{t_columns,jdbcType=VARCHAR},
+            </if>
+            <if test="targetTableName != null">
+                targetTableName = #{targetTableName,jdbcType=VARCHAR},
+            </if>
+            dispatch = #{dispatch,jdbcType=VARCHAR},
+            remarks = #{remarks,jdbcType=VARCHAR},
+        </set>
+        where taskId = #{taskId,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="selectById" resultMap="TaskDescriptionResult">
+            select
+            *
+            from TAB_DATA_MIGRATE_TASKDESCTION
+            where taskId = #{taskId,jdbcType=INTEGER}
+        </select>
+</mapper>

@@ -1,6 +1,6 @@
 package com.xinyi.timing_schedule_datax.utils;
 
-import com.xinyi.timing_schedule_datax.constant.Contant;
+import com.xinyi.timing_schedule_datax.constant.Constant;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +12,7 @@ public class PropertiesUtils {
 
     public static Properties getProperties(){
         props = new Properties();
-        InputStream in = PropertiesUtils.class.getClassLoader().getResourceAsStream(Contant.PROPERTY_FILE_NAME);
+        InputStream in = PropertiesUtils.class.getClassLoader().getResourceAsStream(Constant.PROPERTY_FILE_NAME);
         try {
             props.load(in);
             return props ;
